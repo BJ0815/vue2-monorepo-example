@@ -1,0 +1,59 @@
+{
+  "name": "kad-vue-lerna-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "initialize": "yarn && lerna bootstrap",
+    "clean": "lerna clean --yes && lerna exec -- rm -rf dist",
+    "refresh": "lerna bootstrap",
+    "build:client": "node scripts/build.js",
+    "dev:client": "node scripts/dev.js",
+    "lint": "lerna run lint --parallel --stream",
+    "lint:script": "lerna run lint:script",
+    "lint:style": "lerna run lint:style"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.11",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "babel-eslint": "^10.1.0",
+    "compression-webpack-plugin": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "deepmerge": "^4.2.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "prerender-spa-plugin": "^3.4.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
+    "stylelint-webpack-plugin": "^2.1.0",
+    "susy": "^3.0.6",
+    "vue-template-compiler": "^2.6.11",
+    "axios": "^0.21.0",
+    "core-js": "^3.6.5",
+    "detect-browser": "^5.2.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lerna run --concurrency 1 --stream lint-staged --since HEAD --exclude-dependents"
+  }
+}
